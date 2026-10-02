@@ -1,26 +1,50 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-base: #0a1714;
+  --color-deep: #0d231e;
+  --color-panel: #102c26;
+  --color-line: rgb(0 192 135 / 0.22);
+  --color-emerald: #00c087;
+  --color-emerald-soft: #2fd6a0;
+  --color-gold: #d4af37;
+  --color-ink: #f1f7f4;
+  --color-muted: #a7bdb5;
+  --font-sans: var(--font-barlow);
+  --font-display: var(--font-barlow-condensed);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(80rem 40rem at 85% -10%, rgb(0 192 135 / 0.14), transparent 60%),
+    radial-gradient(60rem 30rem at -10% 40%, rgb(0 192 135 / 0.08), transparent 60%),
+    linear-gradient(180deg, #0f2a24 0%, var(--color-base) 45%, #08130f 100%);
+  color: var(--color-ink);
+}
+
+.gold-text {
+  background: linear-gradient(180deg, #f0d77a 0%, #d4af37 55%, #a8851f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.grid-lines {
+  background-image:
+    linear-gradient(rgb(0 192 135 / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(0 192 135 / 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
