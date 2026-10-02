@@ -19,8 +19,8 @@ const btnPrimary =
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full bg-emerald px-6 py-3 font-semibold text-base text-[#04130e] shadow-[inset_0_1px_0_rgb(255_255_255/0.35),0_10px_30px_-10px_rgb(0_192_135/0.6)] transition duration-300 hover:bg-emerald-soft active:scale-[0.98]";
 const btnGhost =
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border border-line px-6 py-3 font-semibold text-ink transition duration-300 hover:border-emerald hover:text-emerald active:scale-[0.98]";
-const eyebrow = "font-display text-sm font-semibold uppercase tracking-[0.2em] text-gold";
-const h2 = "font-display text-4xl font-semibold leading-[1.05] tracking-tight md:text-5xl";
+const eyebrow = "font-mono text-xs font-medium uppercase tracking-[0.08em] text-gold";
+const h2 = "font-display text-4xl font-semibold leading-[1.05] tracking-[-0.03em] md:text-5xl";
 
 export default function Home() {
   return (
@@ -47,7 +47,7 @@ function Logo() {
       <span className="relative size-10 overflow-hidden rounded-full border border-gold/40 bg-panel">
         <Shot src="/images/logo-mark.jpg" alt="" sizes="40px" className="object-cover" />
       </span>
-      <span className="font-display text-lg font-bold uppercase leading-none tracking-wide">
+      <span className="font-display text-lg font-semibold leading-none tracking-[-0.02em]">
         USDT <span className="gold-text">Chhattisgarh</span>
       </span>
     </a>
@@ -81,7 +81,7 @@ function Hero() {
       <div className="relative mx-auto grid min-h-[calc(100dvh-4rem)] max-w-7xl items-center gap-12 px-4 py-16 md:px-8 lg:grid-cols-[1.15fr_0.85fr] lg:py-20">
         <Reveal>
           <p className={eyebrow}>Institutional & Regional OTC Desk</p>
-          <h1 className="mt-5 font-display text-4xl font-semibold leading-[1.05] tracking-tight md:text-5xl lg:text-6xl">
+          <h1 className="mt-5 font-display text-4xl font-semibold leading-[1.05] tracking-[-0.035em] md:text-5xl lg:text-6xl">
             Structured <span className="gold-text">USDT liquidity</span> across Chhattisgarh
           </h1>
           <p className="mt-6 max-w-[48ch] text-lg leading-relaxed text-muted">
@@ -262,7 +262,7 @@ function Process() {
         {steps.map((s, i) => (
           <li key={s.title}>
             <Reveal delay={0.1 * i} className="border-t-2 border-emerald/70 pt-6">
-              <p className="font-display text-5xl font-bold text-gold/80">{i + 1}</p>
+              <p className="font-mono text-4xl font-medium text-gold/80">{i + 1}</p>
               <h3 className="mt-3 font-display text-2xl font-semibold tracking-tight">{s.title}</h3>
               <p className="mt-2 leading-relaxed text-muted">{s.body}</p>
             </Reveal>

@@ -11,7 +11,8 @@
   --color-ink: #f1f7f4;
   --color-muted: #a7bdb5;
   --font-sans: var(--font-geist);
-  --font-display: var(--font-outfit);
+  --font-display: var(--font-geist);
+  --font-mono: var(--font-geist-mono);
 }
 
 html {
