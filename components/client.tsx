@@ -10,12 +10,16 @@ export function Cta({
   href,
   location,
   channel,
+  side,
+  city,
   className,
   children,
 }: {
   href: string;
   location: string;
   channel: CtaChannel;
+  side?: "buy" | "sell";
+  city?: string;
   className?: string;
   children: ReactNode;
 }) {
@@ -24,7 +28,7 @@ export function Cta({
     <a
       href={href}
       className={className}
-      onClick={() => trackCtaClick(location, channel)}
+      onClick={() => trackCtaClick(location, channel, { side, city })}
       {...(external && { target: "_blank", rel: "noopener noreferrer" })}
     >
       {children}

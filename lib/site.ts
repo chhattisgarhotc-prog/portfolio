@@ -1,8 +1,14 @@
 export const PHONE_DISPLAY = "+91 92326 55598";
 export const PHONE_TEL = "tel:+919232655598";
-export const WHATSAPP_URL =
-  "https://wa.me/919232655598?text=" +
-  encodeURIComponent("Hi, I'd like live USDT rates.");
+const WA = "https://wa.me/919232655598?text=";
+
+export const WHATSAPP_URL = WA + encodeURIComponent("Hello, I'd like live USDT rates.");
+
+export type Side = "buy" | "sell";
+
+export function tradeLink(side: Side, city?: string) {
+  return WA + encodeURIComponent(`Hello, I want to ${side} USDT${city ? ` in ${city}` : ""}.`);
+}
 
 export const NAV = [
   { label: "Services", href: "#services" },

@@ -13,12 +13,16 @@ import {
   Clock,
 } from "@phosphor-icons/react/ssr";
 import { Cta, FaqItem, Reveal, Shot } from "@/components/client";
-import { CITIES, FAQS, NAV, PHONE_DISPLAY, PHONE_TEL, WHATSAPP_URL } from "@/lib/site";
+import { CITIES, FAQS, NAV, PHONE_DISPLAY, PHONE_TEL, WHATSAPP_URL, tradeLink } from "@/lib/site";
 
 const btnPrimary =
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full bg-emerald px-6 py-3 font-semibold text-base text-[#04130e] shadow-[inset_0_1px_0_rgb(255_255_255/0.35),0_10px_30px_-10px_rgb(0_192_135/0.6)] transition duration-300 hover:bg-emerald-soft active:scale-[0.98]";
 const btnGhost =
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border border-line px-6 py-3 font-semibold text-ink transition duration-300 hover:border-emerald hover:text-emerald active:scale-[0.98]";
+const btnBuy =
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full bg-emerald font-semibold text-[#04130e] transition duration-300 hover:bg-emerald-soft active:scale-[0.98]";
+const btnSell =
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border border-emerald/70 font-semibold text-ink transition duration-300 hover:bg-emerald/10 active:scale-[0.98]";
 const eyebrow = "font-mono text-xs font-medium uppercase tracking-[0.08em] text-gold";
 const h2 = "font-display text-4xl font-semibold leading-[1.05] tracking-[-0.03em] md:text-5xl";
 
@@ -37,6 +41,7 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
+      <TradeBar />
     </>
   );
 }
@@ -88,10 +93,8 @@ function Hero() {
             Direct, secure USDT liquidity for traders, enterprises and regional partners.
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-4">
-            <Cta href={WHATSAPP_URL} location="hero" channel="whatsapp" className={btnPrimary}>
-              <WhatsappLogo size={20} weight="fill" /> Inquire Live Rates
-            </Cta>
-            <a href="#process" className={btnGhost}>
+            <TradeButtons location="hero" className="px-7 py-3.5 text-base" />
+            <a href="#process" className="inline-flex items-center gap-2 px-2 font-semibold text-muted transition hover:text-emerald">
               View Process <ArrowDown size={16} weight="bold" />
             </a>
           </div>
@@ -190,16 +193,8 @@ function Services() {
 function Network() {
   return (
     <section id="network" className="border-y border-line bg-deep/50">
-      <div className="mx-auto grid max-w-7xl items-center gap-14 px-4 py-24 md:px-8 md:py-32 lg:grid-cols-2">
-        <Reveal className="relative order-2 aspect-square overflow-hidden rounded-2xl border border-line bg-panel lg:order-1">
-          <Shot
-            src="/images/coverage.jpg"
-            alt="Map of the USDT Chhattisgarh regional network"
-            sizes="(min-width: 1024px) 50vw, 100vw"
-            className="object-cover"
-          />
-        </Reveal>
-        <div className="order-1 lg:order-2">
+      <div className="mx-auto max-w-7xl px-4 py-24 md:px-8 md:py-32">
+        <div className="grid items-center gap-10 lg:grid-cols-[1fr_minmax(0,26rem)] lg:gap-16">
           <Reveal>
             <p className={eyebrow}>Statewide presence</p>
             <h2 className={`${h2} mt-4`}>
@@ -209,20 +204,38 @@ function Network() {
               Settlement access across the north, centre and south of the state.
             </p>
           </Reveal>
-          <ul className="mt-10 grid gap-x-8 gap-y-6 sm:grid-cols-2">
-            {CITIES.map((c, i) => (
-              <li key={c.name}>
-                <Reveal delay={0.04 * i} className="flex gap-3">
-                  <MapPin size={22} weight="fill" className="mt-0.5 shrink-0 text-emerald" />
+          <Reveal delay={0.1} className="relative mx-auto aspect-square w-full max-w-md overflow-hidden rounded-2xl border border-line bg-panel">
+            <Shot
+              src="/images/coverage.jpg"
+              alt="Map of the USDT Chhattisgarh regional network"
+              sizes="(min-width: 1024px) 26rem, 100vw"
+              className="object-cover"
+            />
+          </Reveal>
+        </div>
+        <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {CITIES.map((c, i) => (
+            <li key={c.name} className={i === 0 ? "sm:col-span-2" : undefined}>
+              <Reveal
+                delay={0.04 * i}
+                className="flex h-full flex-col rounded-2xl border border-line bg-panel/70 p-5"
+              >
+                <div className="flex gap-3">
+                  <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-emerald/10">
+                    <MapPin size={20} weight="fill" className="text-emerald" />
+                  </span>
                   <div>
-                    <p className="font-display text-xl font-semibold tracking-tight">{c.name}</p>
+                    <p className="font-display text-lg font-semibold tracking-tight">{c.name}</p>
                     <p className="text-sm text-muted">{c.role}</p>
                   </div>
-                </Reveal>
-              </li>
-            ))}
-          </ul>
-        </div>
+                </div>
+                <div className={`mt-auto grid grid-cols-2 gap-2 pt-5 ${i === 0 ? "sm:ml-auto sm:w-80" : ""}`}>
+                  <TradeButtons location="city" city={c.name} className="px-3 py-2 text-sm" />
+                </div>
+              </Reveal>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
@@ -368,7 +381,7 @@ function Contact() {
 function Footer() {
   return (
     <footer className="border-t border-line bg-[#071210]">
-      <div className="mx-auto max-w-7xl px-4 py-12 md:px-8">
+      <div className="mx-auto max-w-7xl px-4 pb-32 pt-12 md:px-8">
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <Logo />
           <Cta href={PHONE_TEL} location="footer" channel="call" className="text-muted transition hover:text-emerald">
@@ -385,5 +398,28 @@ function Footer() {
         <p className="mt-6 text-xs text-muted/60">© {new Date().getFullYear()} USDT Chhattisgarh</p>
       </div>
     </footer>
+  );
+}
+
+function TradeButtons({ location, city, className }: { location: string; city?: string; className: string }) {
+  return (
+    <>
+      <Cta href={tradeLink("buy", city)} location={location} channel="whatsapp" side="buy" city={city} className={`${btnBuy} ${className}`}>
+        <WhatsappLogo size={18} weight="fill" /> Buy USDT
+      </Cta>
+      <Cta href={tradeLink("sell", city)} location={location} channel="whatsapp" side="sell" city={city} className={`${btnSell} ${className}`}>
+        <WhatsappLogo size={18} weight="fill" className="text-emerald" /> Sell USDT
+      </Cta>
+    </>
+  );
+}
+
+function TradeBar() {
+  return (
+    <div className="fixed inset-x-0 bottom-0 z-40 px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+      <div className="mx-auto grid max-w-md grid-cols-2 gap-2 rounded-full border border-line bg-base/85 p-2 shadow-[0_-10px_40px_-10px_rgb(0_0_0/0.6)] backdrop-blur-md">
+        <TradeButtons location="sticky_bar" className="py-3 text-base" />
+      </div>
+    </div>
   );
 }
