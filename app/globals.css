@@ -10,8 +10,8 @@
   --color-gold: #d4af37;
   --color-ink: #f1f7f4;
   --color-muted: #a7bdb5;
-  --font-sans: var(--font-barlow);
-  --font-display: var(--font-barlow-condensed);
+  --font-sans: var(--font-geist);
+  --font-display: var(--font-outfit);
 }
 
 html {

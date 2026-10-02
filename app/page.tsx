@@ -20,7 +20,7 @@ const btnPrimary =
 const btnGhost =
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border border-line px-6 py-3 font-semibold text-ink transition duration-300 hover:border-emerald hover:text-emerald active:scale-[0.98]";
 const eyebrow = "font-display text-sm font-semibold uppercase tracking-[0.2em] text-gold";
-const h2 = "font-display text-4xl font-bold uppercase leading-[1.05] tracking-tight md:text-5xl";
+const h2 = "font-display text-4xl font-semibold leading-[1.05] tracking-tight md:text-5xl";
 
 export default function Home() {
   return (
@@ -45,7 +45,7 @@ function Logo() {
   return (
     <a href="#top" className="flex items-center gap-3">
       <span className="relative size-10 overflow-hidden rounded-full border border-gold/40 bg-panel">
-        <Shot src="/images/logo.png" alt="" sizes="40px" className="object-cover" />
+        <Shot src="/images/logo-mark.jpg" alt="" sizes="40px" className="object-cover" />
       </span>
       <span className="font-display text-lg font-bold uppercase leading-none tracking-wide">
         USDT <span className="gold-text">Chhattisgarh</span>
@@ -81,7 +81,7 @@ function Hero() {
       <div className="relative mx-auto grid min-h-[calc(100dvh-4rem)] max-w-7xl items-center gap-12 px-4 py-16 md:px-8 lg:grid-cols-[1.15fr_0.85fr] lg:py-20">
         <Reveal>
           <p className={eyebrow}>Institutional & Regional OTC Desk</p>
-          <h1 className="mt-5 font-display text-5xl font-bold uppercase leading-[1.02] tracking-tight md:text-6xl lg:text-[4.25rem]">
+          <h1 className="mt-5 font-display text-4xl font-semibold leading-[1.05] tracking-tight md:text-5xl lg:text-6xl">
             Structured <span className="gold-text">USDT liquidity</span> across Chhattisgarh
           </h1>
           <p className="mt-6 max-w-[48ch] text-lg leading-relaxed text-muted">
@@ -100,7 +100,7 @@ function Hero() {
           <div className="absolute inset-8 rounded-full bg-emerald/25 blur-3xl" />
           <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-line bg-panel/60 shadow-[0_40px_80px_-30px_rgb(0_0_0/0.6)]">
             <Shot
-              src="/images/logo.png"
+              src="/images/logo.jpg"
               alt="USDT Chhattisgarh liquidity desk badge"
               priority
               sizes="(min-width: 1024px) 28rem, 90vw"
@@ -125,7 +125,7 @@ function Metrics() {
         {items.map((m) => (
           <div key={m.k} className="py-7 sm:px-8 first:sm:pl-0">
             <dt className="text-sm text-muted">{m.k}</dt>
-            <dd className="mt-1 font-display text-3xl font-bold uppercase tracking-tight text-ink">{m.v}</dd>
+            <dd className="mt-1 font-display text-3xl font-semibold tracking-tight text-ink">{m.v}</dd>
           </div>
         ))}
       </dl>
@@ -158,7 +158,7 @@ function Services() {
       <div className="mt-12 grid gap-5 lg:grid-cols-5 lg:grid-rows-2">
         <Reveal className="relative min-h-80 overflow-hidden rounded-2xl border border-line bg-panel lg:col-span-3 lg:row-span-2">
           <Shot
-            src="/images/services.png"
+            src="/images/services.jpg"
             alt="Instant CDM settlements and secure counter cash"
             sizes="(min-width: 1024px) 60vw, 100vw"
             className="object-cover"
@@ -171,7 +171,7 @@ function Services() {
             className="rounded-2xl border border-line bg-gradient-to-br from-panel to-deep p-7 lg:col-span-2"
           >
             <c.icon size={32} className="text-emerald" />
-            <h3 className="mt-4 font-display text-2xl font-bold uppercase tracking-tight">{c.title}</h3>
+            <h3 className="mt-4 font-display text-2xl font-semibold tracking-tight">{c.title}</h3>
             <p className="mt-2 leading-relaxed text-muted">{c.body}</p>
             <ul className="mt-5 flex flex-wrap gap-2">
               {c.features.map((f) => (
@@ -193,7 +193,7 @@ function Network() {
       <div className="mx-auto grid max-w-7xl items-center gap-14 px-4 py-24 md:px-8 md:py-32 lg:grid-cols-2">
         <Reveal className="relative order-2 aspect-square overflow-hidden rounded-2xl border border-line bg-panel lg:order-1">
           <Shot
-            src="/images/coverage.png"
+            src="/images/coverage.jpg"
             alt="Map of the USDT Chhattisgarh regional network"
             sizes="(min-width: 1024px) 50vw, 100vw"
             className="object-cover"
@@ -215,7 +215,7 @@ function Network() {
                 <Reveal delay={0.04 * i} className="flex gap-3">
                   <MapPin size={22} weight="fill" className="mt-0.5 shrink-0 text-emerald" />
                   <div>
-                    <p className="font-display text-xl font-bold uppercase tracking-wide">{c.name}</p>
+                    <p className="font-display text-xl font-semibold tracking-tight">{c.name}</p>
                     <p className="text-sm text-muted">{c.role}</p>
                   </div>
                 </Reveal>
@@ -252,7 +252,7 @@ function Process() {
       </Reveal>
       <Reveal className="relative mt-12 aspect-[16/7] overflow-hidden rounded-2xl border border-line bg-panel">
         <Shot
-          src="/images/workflow.png"
+          src="/images/workflow.jpg"
           alt="Deposit, verification and release workflow"
           sizes="(min-width: 1280px) 80rem, 100vw"
           className="object-cover"
@@ -263,7 +263,7 @@ function Process() {
           <li key={s.title}>
             <Reveal delay={0.1 * i} className="border-t-2 border-emerald/70 pt-6">
               <p className="font-display text-5xl font-bold text-gold/80">{i + 1}</p>
-              <h3 className="mt-3 font-display text-2xl font-bold uppercase tracking-tight">{s.title}</h3>
+              <h3 className="mt-3 font-display text-2xl font-semibold tracking-tight">{s.title}</h3>
               <p className="mt-2 leading-relaxed text-muted">{s.body}</p>
             </Reveal>
           </li>
@@ -303,13 +303,13 @@ function Compliance() {
         <div className="mt-14 grid gap-5 md:grid-cols-[1.3fr_1fr]">
           <Reveal className="relative overflow-hidden rounded-2xl border border-gold/30 bg-gradient-to-br from-panel via-deep to-base p-8 md:row-span-2 md:p-10">
             <ShieldCheck size={56} weight="duotone" className="text-gold" />
-            <h3 className="mt-6 font-display text-3xl font-bold uppercase tracking-tight">{items[0].title}</h3>
+            <h3 className="mt-6 font-display text-3xl font-semibold tracking-tight">{items[0].title}</h3>
             <p className="mt-3 max-w-[45ch] text-lg leading-relaxed text-muted">{items[0].body}</p>
           </Reveal>
           {items.slice(1).map((it, i) => (
             <Reveal key={it.title} delay={0.1 * (i + 1)} className="rounded-2xl border border-line bg-panel/70 p-7">
               <it.icon size={30} className="text-emerald" />
-              <h3 className="mt-4 font-display text-2xl font-bold uppercase tracking-tight">{it.title}</h3>
+              <h3 className="mt-4 font-display text-2xl font-semibold tracking-tight">{it.title}</h3>
               <p className="mt-2 leading-relaxed text-muted">{it.body}</p>
             </Reveal>
           ))}

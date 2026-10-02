@@ -90,7 +90,7 @@ export function FaqItem({ q, a }: { q: string; a: string }) {
       className="group border-b border-line py-6"
       onToggle={(e) => e.currentTarget.open && trackFaqOpened(q)}
     >
-      <summary className="flex cursor-pointer list-none items-center justify-between gap-6 font-display text-xl font-semibold tracking-wide text-ink [&::-webkit-details-marker]:hidden">
+      <summary className="flex cursor-pointer list-none items-center justify-between gap-6 font-display text-lg font-medium tracking-tight text-ink [&::-webkit-details-marker]:hidden">
         {q}
         <CaretDown
           size={20}
