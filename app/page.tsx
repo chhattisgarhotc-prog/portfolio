@@ -48,11 +48,11 @@ export default function Home() {
 
 function Logo() {
   return (
-    <a href="#top" className="flex items-center gap-3">
-      <span className="relative size-10 overflow-hidden rounded-full border border-gold/40 bg-panel">
+    <a href="#top" className="flex min-w-0 items-center gap-2 sm:gap-3">
+      <span className="relative size-9 shrink-0 overflow-hidden rounded-full border border-gold/40 bg-panel sm:size-10">
         <Shot src="/images/logo-mark.jpg" alt="" sizes="40px" className="object-cover" />
       </span>
-      <span className="font-display text-lg font-semibold leading-none tracking-[-0.02em]">
+      <span className="truncate font-display text-base font-semibold leading-tight tracking-[-0.02em] sm:text-lg">
         USDT <span className="gold-text">Chhattisgarh</span>
       </span>
     </a>
@@ -62,7 +62,7 @@ function Logo() {
 function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-base/80 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-4 md:px-8">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:gap-6 md:px-8">
         <Logo />
         <nav className="hidden items-center gap-7 text-sm font-medium text-muted lg:flex">
           {NAV.map((n) => (
@@ -71,8 +71,15 @@ function Header() {
             </a>
           ))}
         </nav>
-        <Cta href={WHATSAPP_URL} location="header" channel="whatsapp" className={`${btnPrimary} px-4 py-2 text-sm`}>
-          Inquire Live Rates <ArrowRight size={16} weight="bold" />
+        <Cta
+          href={WHATSAPP_URL}
+          location="header"
+          channel="whatsapp"
+          className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-emerald px-3.5 py-2 text-sm font-semibold text-[#04130e] transition duration-300 hover:bg-emerald-soft active:scale-[0.98] sm:px-4"
+        >
+          <span className="sm:hidden">Live Rates</span>
+          <span className="hidden sm:inline">Inquire Live Rates</span>
+          <ArrowRight size={16} weight="bold" className="hidden sm:block" />
         </Cta>
       </div>
     </header>
