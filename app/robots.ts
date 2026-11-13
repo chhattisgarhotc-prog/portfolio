@@ -7,9 +7,9 @@ const trainingBots = ["GPTBot", "ClaudeBot", "Google-Extended", "Applebot-Extend
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      { userAgent: "*", allow: "/" },
-      { userAgent: searchBots, allow: "/" },
-      { userAgent: trainingBots, allow: "/" },
+      { userAgent: "*", allow: "/", disallow: "/md/" },
+      { userAgent: searchBots, allow: "/", disallow: "/md/" },
+      { userAgent: trainingBots, allow: "/", disallow: "/md/" },
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,
     host: SITE_URL,

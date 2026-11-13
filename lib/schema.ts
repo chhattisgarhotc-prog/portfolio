@@ -15,6 +15,8 @@ export const jsonLd = {
       image: `${SITE_URL}/images/usdt-chhattisgarh-desk.jpg`,
       description: SITE_DESCRIPTION,
       telephone,
+      knowsAbout: ["USDT OTC desk", "Buy USDT", "Sell USDT", "USDT CDM settlement", "USDT counter cash"],
+      keywords: "USDT OTC desk, buy USDT, sell USDT, USDT Raipur, USDT Chhattisgarh",
       priceRange: "Min 100 USDT",
       currenciesAccepted: "INR, USDT",
       paymentAccepted: "Cash, Cash Deposit Machine",
@@ -26,7 +28,7 @@ export const jsonLd = {
         opens: "10:00",
         closes: "21:00",
       },
-      contactPoint: { "@type": "ContactPoint", telephone, contactType: "sales", areaServed: "IN", availableLanguage: ["en", "hi"] },
+      contactPoint: { "@type": "ContactPoint", telephone, contactType: "sales", areaServed: "IN", availableLanguage: "en", url: `${SITE_URL}/contact` },
       hasOfferCatalog: {
         "@type": "OfferCatalog",
         name: "USDT settlement services",
@@ -35,7 +37,7 @@ export const jsonLd = {
           ["In-person counter cash", "Face-to-face USDT settlement in secure commercial hubs across Chhattisgarh."],
         ].map(([name, description]) => ({
           "@type": "Offer",
-          itemOffered: { "@type": "Service", name, description, provider: { "@id": org }, areaServed: "Chhattisgarh" },
+          itemOffered: { "@type": "Service", name, description, serviceType: "USDT OTC desk", provider: { "@id": org }, areaServed: "Chhattisgarh" },
         })),
       },
     },

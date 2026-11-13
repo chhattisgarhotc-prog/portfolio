@@ -11,11 +11,17 @@ export function tradeLink(side: Side, city?: string) {
 }
 
 export const NAV = [
-  { label: "Services", href: "#services" },
-  { label: "Network", href: "#network" },
-  { label: "How It Works", href: "#process" },
-  { label: "Compliance", href: "#compliance" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Services", href: "/#services" },
+  { label: "Network", href: "/#network" },
+  { label: "How It Works", href: "/#process" },
+  { label: "Compliance", href: "/#compliance" },
+  { label: "FAQ", href: "/#faq" },
+];
+
+export const PAGES_NAV = [
+  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
+  { label: "Privacy", href: "/privacy" },
 ];
 
 export const CITIES = [
@@ -27,6 +33,51 @@ export const CITIES = [
   { name: "Jagdalpur", role: "Southern Bastar desk coverage" },
   { name: "Raigarh", role: "High-volume enterprise liquidity" },
 ];
+
+export const SERVICES = [
+  {
+    title: "Cash Deposit Machine settlements",
+    body: "Automated cash-in terminal settlements to designated accounts. Ideal for remote traders who need fast release without banking delays.",
+    features: ["Real-time deposit verification", "Zero counterparty wait", "Rapid on-chain dispatch"],
+  },
+  {
+    title: "In-person counter cash",
+    body: "Structured face-to-face settlement in secure commercial hubs across Chhattisgarh, built for high-ticket block orders.",
+    features: ["Strict ID verification", "In-person confirmation", "Dedicated privacy"],
+  },
+];
+
+export const STEPS = [
+  {
+    title: "Order ticket consultation",
+    body: "Share your volume (min 100 USDT) and route, CDM or counter cash. Get live pricing and routing instructions.",
+  },
+  {
+    title: "Settlement & verification",
+    body: "Make the cash deposit or counter exchange. Send proof of deposit and your TRC20 or BEP20 wallet address.",
+  },
+  {
+    title: "On-chain release",
+    body: "After source-matching and ledger confirmation, USDT is released to your wallet with the full TXID record.",
+  },
+];
+
+export const COMPLIANCE = [
+  {
+    title: "Counterparty verification (KYC)",
+    body: "Every trade party is verified to block tainted funds, fraud deposits and third-party scams.",
+  },
+  {
+    title: "Zero cybercrime exposure",
+    body: "Strict validation prevents the account liens and cyber cell flags common in anonymous P2P markets.",
+  },
+  {
+    title: "Audit-ready logging",
+    body: "Transaction hashes, timestamps and receipts are kept for statutory compliance and clean accounting.",
+  },
+];
+
+export const HOURS = "Monday to Sunday, 10:00 AM to 9:00 PM IST";
 
 export const FAQS = [
   {
@@ -51,9 +102,4 @@ export const SITE_NAME = "USDT Chhattisgarh";
 export const SITE_TITLE = "USDT Chhattisgarh | Buy & Sell USDT OTC Desk in Raipur";
 export const SITE_DESCRIPTION =
   "Buy and sell USDT through CDM or counter cash settlement in Raipur, Bilaspur, Durg-Bhilai, Korba, Ambikapur, Jagdalpur and Raigarh. Min 100 USDT.";
-export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : "http://localhost:3000")
-).replace(/\/$/, "");
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.usdtchhattisgarh.com").replace(/\/$/, "");

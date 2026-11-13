@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-base: #0a1714;
+  --color-canvas: #0a1714;
   --color-deep: #0d231e;
   --color-panel: #102c26;
   --color-line: rgb(0 192 135 / 0.22);
@@ -25,7 +25,7 @@ body {
   background:
     radial-gradient(80rem 40rem at 85% -10%, rgb(0 192 135 / 0.14), transparent 60%),
     radial-gradient(60rem 30rem at -10% 40%, rgb(0 192 135 / 0.08), transparent 60%),
-    linear-gradient(180deg, #0f2a24 0%, var(--color-base) 45%, #08130f 100%);
+    linear-gradient(180deg, #0f2a24 0%, var(--color-canvas) 45%, #08130f 100%);
   color: var(--color-ink);
 }
 
@@ -50,9 +50,19 @@ body {
   }
 }
 
-@media (scripting: none) {
-  [style*="opacity:0"] {
-    opacity: 1 !important;
-    transform: none !important;
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
   }
 }

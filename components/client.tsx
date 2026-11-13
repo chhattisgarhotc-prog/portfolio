@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion } from "motion/react";
 import { useState, type ReactNode } from "react";
 import { CaretDown } from "@phosphor-icons/react";
 import { trackCtaClick, trackFaqOpened, type CtaChannel } from "@/lib/analytics";
@@ -36,29 +35,6 @@ export function Cta({
   );
 }
 
-export function Reveal({
-  children,
-  delay = 0,
-  className,
-}: {
-  children: ReactNode;
-  delay?: number;
-  className?: string;
-}) {
-  const reduce = useReducedMotion();
-  return (
-    <motion.div
-      className={className}
-      initial={reduce ? false : { opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
 // Brand graphics live in /public/images; until a file is dropped in, the panel stays empty instead of showing a broken image.
 export function Shot({
   src,
@@ -80,7 +56,8 @@ export function Shot({
       src={src}
       alt={alt}
       fill
-      priority={priority}
+      loading={priority ? "eager" : undefined}
+      fetchPriority={priority ? "high" : undefined}
       sizes={sizes}
       className={className}
       onError={() => setFailed(true)}

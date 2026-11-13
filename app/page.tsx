@@ -1,5 +1,4 @@
 import {
-  ArrowRight,
   ArrowDown,
   Bank,
   HandCoins,
@@ -12,20 +11,10 @@ import {
   WhatsappLogo,
   Clock,
 } from "@phosphor-icons/react/ssr";
-import { Cta, FaqItem, Reveal, Shot } from "@/components/client";
+import { Cta, FaqItem, Shot } from "@/components/client";
 import { jsonLd } from "@/lib/schema";
-import { CITIES, FAQS, NAV, PHONE_DISPLAY, PHONE_TEL, WHATSAPP_URL, tradeLink } from "@/lib/site";
-
-const btnPrimary =
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full bg-emerald px-6 py-3 font-semibold text-base text-[#04130e] shadow-[inset_0_1px_0_rgb(255_255_255/0.35),0_10px_30px_-10px_rgb(0_192_135/0.6)] transition duration-300 hover:bg-emerald-soft active:scale-[0.98]";
-const btnGhost =
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border border-line px-6 py-3 font-semibold text-ink transition duration-300 hover:border-emerald hover:text-emerald active:scale-[0.98]";
-const btnBuy =
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full bg-emerald font-semibold text-[#04130e] transition duration-300 hover:bg-emerald-soft active:scale-[0.98]";
-const btnSell =
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full border border-emerald/70 font-semibold text-ink transition duration-300 hover:bg-emerald/10 active:scale-[0.98]";
-const eyebrow = "font-mono text-xs font-medium uppercase tracking-[0.08em] text-gold";
-const h2 = "font-display text-4xl font-semibold leading-[1.05] tracking-[-0.03em] md:text-5xl";
+import { CITIES, COMPLIANCE, FAQS, HOURS, PHONE_DISPLAY, PHONE_TEL, SERVICES, STEPS, WHATSAPP_URL } from "@/lib/site";
+import { Footer, Header, Reveal, TradeBar, TradeButtons, btnGhost, btnPrimary, eyebrow, h2 } from "@/components/chrome";
 
 export default function Home() {
   return (
@@ -48,46 +37,6 @@ export default function Home() {
       <Footer />
       <TradeBar />
     </>
-  );
-}
-
-function Logo() {
-  return (
-    <a href="#top" className="flex min-w-0 items-center gap-2 sm:gap-3">
-      <span className="relative size-9 shrink-0 overflow-hidden rounded-full border border-gold/40 bg-panel sm:size-10">
-        <Shot src="/images/usdt-chhattisgarh-logo.jpg" alt="" sizes="40px" className="object-cover" />
-      </span>
-      <span className="truncate font-display text-base font-semibold leading-tight tracking-[-0.02em] sm:text-lg">
-        USDT <span className="gold-text">Chhattisgarh</span>
-      </span>
-    </a>
-  );
-}
-
-function Header() {
-  return (
-    <header className="sticky top-0 z-40 border-b border-line bg-base/80 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:gap-6 md:px-8">
-        <Logo />
-        <nav className="hidden items-center gap-7 text-sm font-medium text-muted lg:flex">
-          {NAV.map((n) => (
-            <a key={n.href} href={n.href} className="transition hover:text-ink">
-              {n.label}
-            </a>
-          ))}
-        </nav>
-        <Cta
-          href={WHATSAPP_URL}
-          location="header"
-          channel="whatsapp"
-          className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full bg-emerald px-3.5 py-2 text-sm font-semibold text-[#04130e] transition duration-300 hover:bg-emerald-soft active:scale-[0.98] sm:px-4"
-        >
-          <span className="sm:hidden">Live Rates</span>
-          <span className="hidden sm:inline">Inquire Live Rates</span>
-          <ArrowRight size={16} weight="bold" className="hidden sm:block" />
-        </Cta>
-      </div>
-    </header>
   );
 }
 
@@ -149,20 +98,6 @@ function Metrics() {
 }
 
 function Services() {
-  const cards = [
-    {
-      icon: Bank,
-      title: "Cash Deposit Machine settlements",
-      body: "Automated cash-in terminal settlements to designated accounts. Ideal for remote traders who need fast release without banking delays.",
-      features: ["Real-time deposit verification", "Zero counterparty wait", "Rapid on-chain dispatch"],
-    },
-    {
-      icon: HandCoins,
-      title: "In-person counter cash",
-      body: "Structured face-to-face settlement in secure commercial hubs across Chhattisgarh, built for high-ticket block orders.",
-      features: ["Strict ID verification", "In-person confirmation", "Dedicated privacy"],
-    },
-  ];
   return (
     <section id="services" className="mx-auto max-w-7xl px-4 py-24 md:px-8 md:py-32">
       <Reveal>
@@ -179,10 +114,9 @@ function Services() {
             className="object-cover"
           />
         </Reveal>
-        {cards.map((c, i) => (
+        {SERVICES.map((c, i) => ({ ...c, icon: [Bank, HandCoins][i] })).map((c) => (
           <Reveal
             key={c.title}
-            delay={0.1 * (i + 1)}
             className="rounded-2xl border border-line bg-gradient-to-br from-panel to-deep p-7 lg:col-span-2"
           >
             <c.icon size={32} className="text-emerald" />
@@ -216,7 +150,7 @@ function Network() {
               Settlement access across the north, centre and south of the state.
             </p>
           </Reveal>
-          <Reveal delay={0.1} className="relative mx-auto aspect-square w-full max-w-md overflow-hidden rounded-2xl border border-line bg-panel">
+          <Reveal className="relative mx-auto aspect-square w-full max-w-md overflow-hidden rounded-2xl border border-line bg-panel">
             <Shot
               src="/images/chhattisgarh-usdt-coverage-map.jpg"
               alt="Map of the USDT Chhattisgarh regional network"
@@ -229,7 +163,6 @@ function Network() {
           {CITIES.map((c, i) => (
             <li key={c.name} className={i === 0 ? "sm:col-span-2" : undefined}>
               <Reveal
-                delay={0.04 * i}
                 className="flex h-full flex-col rounded-2xl border border-line bg-panel/70 p-5"
               >
                 <div className="flex gap-3">
@@ -254,20 +187,6 @@ function Network() {
 }
 
 function Process() {
-  const steps = [
-    {
-      title: "Order ticket consultation",
-      body: "Share your volume (min 100 USDT) and route, CDM or counter cash. Get live pricing and routing instructions.",
-    },
-    {
-      title: "Settlement & verification",
-      body: "Make the cash deposit or counter exchange. Send proof of deposit and your TRC20 or BEP20 wallet address.",
-    },
-    {
-      title: "On-chain release",
-      body: "After source-matching and ledger confirmation, USDT is released to your wallet with the full TXID record.",
-    },
-  ];
   return (
     <section id="process" className="mx-auto max-w-7xl px-4 py-24 md:px-8 md:py-32">
       <Reveal className="max-w-3xl">
@@ -284,9 +203,9 @@ function Process() {
         />
       </Reveal>
       <ol className="mt-14 grid gap-10 md:grid-cols-3 md:gap-8">
-        {steps.map((s, i) => (
+        {STEPS.map((s, i) => (
           <li key={s.title}>
-            <Reveal delay={0.1 * i} className="border-t-2 border-emerald/70 pt-6">
+            <Reveal className="border-t-2 border-emerald/70 pt-6">
               <p className="font-mono text-4xl font-medium text-gold/80">{i + 1}</p>
               <h3 className="mt-3 font-display text-2xl font-semibold tracking-tight">{s.title}</h3>
               <p className="mt-2 leading-relaxed text-muted">{s.body}</p>
@@ -299,23 +218,7 @@ function Process() {
 }
 
 function Compliance() {
-  const items = [
-    {
-      icon: IdentificationCard,
-      title: "Counterparty verification (KYC)",
-      body: "Every trade party is verified to block tainted funds, fraud deposits and third-party scams.",
-    },
-    {
-      icon: ReceiptX,
-      title: "Zero cybercrime exposure",
-      body: "Strict validation prevents the account liens and cyber cell flags common in anonymous P2P markets.",
-    },
-    {
-      icon: FileText,
-      title: "Audit-ready logging",
-      body: "Transaction hashes, timestamps and receipts are kept for statutory compliance and clean accounting.",
-    },
-  ];
+  const items = COMPLIANCE.map((c, i) => ({ ...c, icon: [IdentificationCard, ReceiptX, FileText][i] }));
   return (
     <section id="compliance" className="border-y border-line bg-deep/50">
       <div className="mx-auto max-w-7xl px-4 py-24 md:px-8 md:py-32">
@@ -326,13 +229,13 @@ function Compliance() {
           </h2>
         </Reveal>
         <div className="mt-14 grid gap-5 md:grid-cols-[1.3fr_1fr]">
-          <Reveal className="relative overflow-hidden rounded-2xl border border-gold/30 bg-gradient-to-br from-panel via-deep to-base p-8 md:row-span-2 md:p-10">
+          <Reveal className="relative overflow-hidden rounded-2xl border border-gold/30 bg-gradient-to-br from-panel via-deep to-canvas p-8 md:row-span-2 md:p-10">
             <ShieldCheck size={56} weight="duotone" className="text-gold" />
             <h3 className="mt-6 font-display text-3xl font-semibold tracking-tight">{items[0].title}</h3>
             <p className="mt-3 max-w-[45ch] text-lg leading-relaxed text-muted">{items[0].body}</p>
           </Reveal>
-          {items.slice(1).map((it, i) => (
-            <Reveal key={it.title} delay={0.1 * (i + 1)} className="rounded-2xl border border-line bg-panel/70 p-7">
+          {items.slice(1).map((it) => (
+            <Reveal key={it.title} className="rounded-2xl border border-line bg-panel/70 p-7">
               <it.icon size={30} className="text-emerald" />
               <h3 className="mt-4 font-display text-2xl font-semibold tracking-tight">{it.title}</h3>
               <p className="mt-2 leading-relaxed text-muted">{it.body}</p>
@@ -364,7 +267,7 @@ function Faq() {
 function Contact() {
   return (
     <section id="contact" className="mx-auto max-w-7xl px-4 pb-24 md:px-8 md:pb-32">
-      <Reveal className="relative overflow-hidden rounded-[2rem] border border-line bg-gradient-to-br from-[#11382f] via-deep to-base px-6 py-16 text-center md:px-16 md:py-24">
+      <Reveal className="relative overflow-hidden rounded-[2rem] border border-line bg-gradient-to-br from-[#11382f] via-deep to-canvas px-6 py-16 text-center md:px-16 md:py-24">
         <div className="grid-lines pointer-events-none absolute inset-0" />
         <div className="relative">
           <h2 className={`${h2} mx-auto max-w-3xl`}>
@@ -382,7 +285,7 @@ function Contact() {
             </Cta>
           </div>
           <p className="mt-8 inline-flex items-center gap-2 text-sm text-muted">
-            <Clock size={16} /> Monday to Sunday, 10:00 AM to 9:00 PM IST
+            <Clock size={16} /> {HOURS}
           </p>
         </div>
       </Reveal>
@@ -390,48 +293,3 @@ function Contact() {
   );
 }
 
-function Footer() {
-  return (
-    <footer className="border-t border-line bg-[#071210]">
-      <div className="mx-auto max-w-7xl px-4 pb-32 pt-12 md:px-8">
-        <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-          <Logo />
-          <Cta href={PHONE_TEL} location="footer" channel="call" className="text-muted transition hover:text-emerald">
-            {PHONE_DISPLAY}
-          </Cta>
-        </div>
-        <p className="mt-10 max-w-4xl text-xs leading-relaxed text-muted/80">
-          <strong className="text-muted">Disclaimer:</strong> Virtual Digital Assets (VDAs) are subject to market
-          risks and regulatory oversight in India under the Prevention of Money Laundering Act (PMLA). Digital asset
-          transactions are taxed at 30% under Section 115BBH and subject to 1% TDS under Section 194S of the Income Tax
-          Act. USDT Chhattisgarh operates on strict counterparty verification principles and does not process
-          unverified or third-party funds.
-        </p>
-        <p className="mt-6 text-xs text-muted/60">© {new Date().getFullYear()} USDT Chhattisgarh</p>
-      </div>
-    </footer>
-  );
-}
-
-function TradeButtons({ location, city, className }: { location: string; city?: string; className: string }) {
-  return (
-    <>
-      <Cta href={tradeLink("buy", city)} location={location} channel="whatsapp" side="buy" city={city} className={`${btnBuy} ${className}`}>
-        <WhatsappLogo size={18} weight="fill" /> Buy USDT
-      </Cta>
-      <Cta href={tradeLink("sell", city)} location={location} channel="whatsapp" side="sell" city={city} className={`${btnSell} ${className}`}>
-        <WhatsappLogo size={18} weight="fill" className="text-emerald" /> Sell USDT
-      </Cta>
-    </>
-  );
-}
-
-function TradeBar() {
-  return (
-    <div className="fixed inset-x-0 bottom-0 z-40 px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
-      <div className="mx-auto grid max-w-md grid-cols-2 gap-2 rounded-full border border-line bg-base/85 p-2 shadow-[0_-10px_40px_-10px_rgb(0_0_0/0.6)] backdrop-blur-md">
-        <TradeButtons location="sticky_bar" className="py-3 text-base" />
-      </div>
-    </div>
-  );
-}
