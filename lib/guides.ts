@@ -61,7 +61,7 @@ export const GUIDES: Guide[] = [
         heading: "What changed by November 2026?",
         paragraphs: [
           "The 2025 Act added Section 509, which requires prescribed reporting entities to file statements on crypto-asset transactions. It continues Section 285BAA, inserted into the 1961 Act by the Finance Act, 2025 with effect from 1 April 2026.",
-          "Budget 2026-27 added a penalty of ₹200 per day for not filing these statements and ₹50,000 for inaccurate information, from 1 April 2026. The 30% rate and 1% TDS were not changed.",
+          "The Finance Act, 2026 rewrote Section 446 from 1 April 2026: a penalty of ₹200 per day for not filing these statements, and ₹50,000 for inaccurate information left uncorrected or for failing due diligence. The 30% rate and 1% TDS were not changed.",
           `${SITE_NAME} keeps transaction hashes, timestamps and receipts for every trade, which gives you the dates and amounts Schedule VDA asks for.`,
           "This guide is general information, not tax advice. Confirm your own position with a chartered accountant.",
         ],
@@ -69,8 +69,12 @@ export const GUIDES: Guide[] = [
     ],
     sources: [
       {
-        label: "Income-tax Act, 2025 (Gazette text): Sections 2(111), 194, 393 and 509",
-        url: "https://a2ztaxcorp.net/wp-content/uploads/2025/08/THE-INCOME-TAX-ACT-2025.pdf",
+        label: "Gazette of India: Income-tax Act, 2025, Sections 2(111), 194, 393 and 509",
+        url: "https://egazette.gov.in/WriteReadData/2025/265620.pdf",
+      },
+      {
+        label: "Finance Act, 2025 (Gazette text): Section 90 inserting Section 285BAA",
+        url: "https://thc.nic.in/Central%20Governmental%20Acts/Finance%20Act,%202025.pdf",
       },
       {
         label: "All India Radio News: Income-tax Act, 2025 effective from 1 April 2026",
@@ -78,7 +82,7 @@ export const GUIDES: Guide[] = [
       },
       {
         label: "CBDT Circular No. 13 of 2022 (guidelines on Section 194S)",
-        url: "https://incometaxindia.gov.in/communications/circular/circular-13-2022.pdf",
+        url: "https://www.incometaxindia.gov.in/w/circular-no.-13/2022-guidelines-for-removal-of-difficulties-under-sub-section-6-of-section-194s-of-the-income-tax-act-1961",
       },
       {
         label: "Income Tax Department e-filing: ITR-2 FAQ (Section 115BBH, Schedule VDA)",
@@ -93,12 +97,8 @@ export const GUIDES: Guide[] = [
         url: "https://www.incometax.gov.in/iec/foportal/ais-faq",
       },
       {
-        label: "Finance Bill 2026: Memorandum explaining provisions (crypto-asset penalty)",
-        url: "https://www.indiabudget.gov.in/doc/memo.pdf",
-      },
-      {
-        label: "Finance Bill 2026 (Health and Education Cess at 4%)",
-        url: "https://www.indiabudget.gov.in/doc/Finance_Bill.pdf",
+        label: "Gazette of India: Finance Act, 2026, Section 2 (4% cess) and Section 101 (penalty)",
+        url: "https://egazette.gov.in/WriteReadData/2026/271439.pdf",
       },
     ],
   },

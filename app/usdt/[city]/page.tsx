@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { MapPin } from "@phosphor-icons/react/ssr";
 import { Footer, Header, JsonLd, TradeBar, TradeButtons, eyebrow } from "@/components/chrome";
 import { FaqItem } from "@/components/client";
-import { cityAnswer, cityBySlug, cityDescription, cityFaqs, cityTitle } from "@/lib/cities";
+import { cityAnswer, cityBySlug, cityNearby, cityDescription, cityFaqs, cityTitle } from "@/lib/cities";
 import { cityJsonLd } from "@/lib/schema";
 import { CITIES, COMPLIANCE, SERVICES, STEPS } from "@/lib/site";
 
@@ -47,6 +47,7 @@ export default async function CityPage({ params }: PageProps<"/usdt/[city]">) {
         <section className="mt-16">
           <h2 className={h2}>The {c.name} desk</h2>
           <p className="mt-4 leading-relaxed text-muted">{c.about}</p>
+          <p className="mt-4 leading-relaxed text-muted">{cityNearby(c)}</p>
         </section>
 
         <section className="mt-12">

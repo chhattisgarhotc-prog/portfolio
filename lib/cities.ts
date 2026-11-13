@@ -9,6 +9,9 @@ export const cityTitle = (c: City) => `Buy & Sell USDT in ${c.name}`;
 export const cityDescription = (c: City) =>
   `Buy or sell USDT in ${c.name} with CDM or counter cash settlement. Min 100 USDT, TRC20 or BEP20, KYC-verified desk.`;
 
+export const cityNearby = (c: City) =>
+  `Traders in nearby ${c.nearby.slice(0, -1).join(", ")} and ${c.nearby.at(-1)} can message the desk to confirm the nearest settlement option.`;
+
 export const cityAnswer = (c: City) =>
   `${SITE_NAME} settles USDT trades in ${c.name} by Cash Deposit Machine (CDM) deposit or in-person counter cash. The minimum ticket is 100 USDT, released on TRC20 or BEP20, usually within 15 to 30 minutes of deposit confirmation.`;
 

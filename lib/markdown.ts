@@ -1,4 +1,4 @@
-import { cityAnswer, cityBySlug, cityFaqs, cityTitle } from "@/lib/cities";
+import { cityAnswer, cityBySlug, cityFaqs, cityNearby, cityTitle } from "@/lib/cities";
 import { GUIDES } from "@/lib/guides";
 import { DOCS, type DocSlug } from "@/lib/pages";
 import {
@@ -160,6 +160,8 @@ export function cityMarkdown(slug: string) {
 ## The ${c.name} desk
 
 ${c.about}
+
+${cityNearby(c)}
 
 ## Settlement options
 
