@@ -74,10 +74,10 @@ export function Footer() {
         </div>
         <p className="mt-10 max-w-4xl text-xs leading-relaxed text-muted/80">
           <strong className="text-muted">Disclaimer:</strong> Virtual Digital Assets (VDAs) are subject to market
-          risks and regulatory oversight in India under the Prevention of Money Laundering Act (PMLA). Digital asset
-          transactions are taxed at 30% under Section 115BBH and subject to 1% TDS under Section 194S of the Income Tax
-          Act. USDT Chhattisgarh operates on strict counterparty verification principles and does not process
-          unverified or third-party funds.
+          risks and regulatory oversight in India under the Prevention of Money Laundering Act (PMLA). Transfers of
+          digital assets are taxed at 30% and subject to 1% TDS under Sections 194 and 393 of the Income-tax Act, 2025
+          (Sections 115BBH and 194S of the Income-tax Act, 1961 for transfers up to 31 March 2026). USDT Chhattisgarh
+          operates on strict counterparty verification principles and does not process unverified or third-party funds.
         </p>
         <p className="mt-6 text-xs text-muted/80">© {new Date().getFullYear()} USDT Chhattisgarh</p>
       </div>

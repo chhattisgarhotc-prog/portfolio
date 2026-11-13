@@ -19,19 +19,55 @@ export const NAV = [
 ];
 
 export const PAGES_NAV = [
+  { label: "Guides", href: "/guides" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
   { label: "Privacy", href: "/privacy" },
 ];
 
 export const CITIES = [
-  { name: "Raipur", role: "Capital liquidity and hub operations" },
-  { name: "Bilaspur", role: "Fast-track CDM and trading desk" },
-  { name: "Durg-Bhilai", role: "Industrial corridor OTC settlements" },
-  { name: "Korba", role: "Energy hub settlement support" },
-  { name: "Ambikapur", role: "Surguja regional trading rail" },
-  { name: "Jagdalpur", role: "Southern Bastar desk coverage" },
-  { name: "Raigarh", role: "High-volume enterprise liquidity" },
+  {
+    slug: "raipur",
+    name: "Raipur",
+    role: "Capital liquidity and hub operations",
+    about: "Raipur is the state capital and Chhattisgarh's largest commercial centre, and the desk's main liquidity hub. Most block orders are priced and routed from here.",
+  },
+  {
+    slug: "bilaspur",
+    name: "Bilaspur",
+    role: "Fast-track CDM and trading desk",
+    about: "Bilaspur is home to the Chhattisgarh High Court and the South East Central Railway zone headquarters. The desk runs fast-track CDM settlements for traders across the Bilaspur region.",
+  },
+  {
+    slug: "durg-bhilai",
+    name: "Durg-Bhilai",
+    role: "Industrial corridor OTC settlements",
+    about: "Durg and Bhilai form the twin-city industrial corridor around the Bhilai Steel Plant. The desk handles OTC settlements for traders and businesses along the corridor.",
+  },
+  {
+    slug: "korba",
+    name: "Korba",
+    role: "Energy hub settlement support",
+    about: "Korba is the state's power and coal hub, with major thermal power stations and coalfields. The desk supports settlements for traders across the Korba energy belt.",
+  },
+  {
+    slug: "ambikapur",
+    name: "Ambikapur",
+    role: "Surguja regional trading rail",
+    about: "Ambikapur is the headquarters of the Surguja division in northern Chhattisgarh. The desk gives traders in the north of the state a verified settlement route without travelling to Raipur.",
+  },
+  {
+    slug: "jagdalpur",
+    name: "Jagdalpur",
+    role: "Southern Bastar desk coverage",
+    about: "Jagdalpur is the headquarters of the Bastar division in southern Chhattisgarh. The desk covers USDT settlement for traders across the Bastar region.",
+  },
+  {
+    slug: "raigarh",
+    name: "Raigarh",
+    role: "High-volume enterprise liquidity",
+    about: "Raigarh is an industrial city with large steel and power plants on the Howrah–Mumbai rail line. The desk serves high-volume enterprise orders from the Raigarh belt.",
+  },
 ];
 
 export const SERVICES = [
@@ -68,8 +104,8 @@ export const COMPLIANCE = [
     body: "Every trade party is verified to block tainted funds, fraud deposits and third-party scams.",
   },
   {
-    title: "Zero cybercrime exposure",
-    body: "Strict validation prevents the account liens and cyber cell flags common in anonymous P2P markets.",
+    title: "Lower cybercrime exposure",
+    body: "Strict validation lowers the risk of the account liens and cyber cell flags common in anonymous P2P markets.",
   },
   {
     title: "Audit-ready logging",

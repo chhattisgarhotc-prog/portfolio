@@ -3,6 +3,8 @@ import assert from "node:assert/strict";
 const base = (process.argv[2] ?? "http://localhost:3000").replace(/\/$/, "");
 const get = (path, accept = "text/html") => fetch(base + path, { headers: { Accept: accept } });
 const checks = [];
+const cityPaths = ["raipur", "bilaspur", "durg-bhilai", "korba", "ambikapur", "jagdalpur", "raigarh"].map((c) => `/usdt/${c}`);
+const guidePaths = ["usdt-tax-tds-india", "how-cdm-usdt-settlement-works", "p2p-usdt-bank-account-freeze"].map((g) => `/guides/${g}`);
 const check = (name, fn) => checks.push([name, fn]);
 
 check("homepage HTML metadata", async () => {
@@ -35,7 +37,7 @@ for (const [accept, p] of [["text/html,application/xhtml+xml,*/*;q=0.8", "/"], [
 }
 
 check("title and description lengths", async () => {
-  for (const p of ["/", "/about", "/contact", "/privacy"]) {
+  for (const p of ["/", "/about", "/contact", "/privacy", "/guides", ...cityPaths, ...guidePaths]) {
     const html = await (await get(p)).text();
     const title = html.match(/<title>([^<]*)<\/title>/)[1].replace(/&amp;/g, "&");
     const desc = html.match(/<meta name="description" content="([^"]*)"/)[1].replace(/&amp;/g, "&");
@@ -71,7 +73,7 @@ check("robots.txt", async () => {
 
 check("sitemap.xml", async () => {
   const body = await (await get("/sitemap.xml", "application/xml")).text();
-  for (const p of ["/", "/about", "/contact", "/privacy"]) assert.match(body, new RegExp(`<loc>[^<]+${p === "/" ? "/" : p}</loc>`));
+  for (const p of ["/", "/about", "/contact", "/privacy", "/guides", ...cityPaths, ...guidePaths]) assert.match(body, new RegExp(`<loc>[^<]+${p === "/" ? "/" : p}</loc>`));
   assert.match(body, /<lastmod>/);
 });
 
@@ -81,7 +83,7 @@ check("llms.txt", async () => {
   assert.match(body, /## When to use/);
 });
 
-for (const p of ["/about", "/contact", "/privacy"]) {
+for (const p of ["/about", "/contact", "/privacy", ...cityPaths, ...guidePaths]) {
   check(`${p} HTML and Markdown`, async () => {
     const res = await get(p);
     assert.equal(res.status, 200);
@@ -89,6 +91,7 @@ for (const p of ["/about", "/contact", "/privacy"]) {
     const text = html.match(/<main[^>]*>(.*?)<\/main>/s)[1].replace(/<[^>]+>/g, " ");
     assert.ok(text.replace(/\s+/g, " ").length >= 500, `${p} main text too short`);
     assert.match(html, /"BreadcrumbList"/);
+    assert.match(html, /<h1[^>]*>/);
     const md = await get(p, "text/markdown");
     assert.equal(md.status, 200);
     assert.match(md.headers.get("content-type"), /^text\/markdown/);

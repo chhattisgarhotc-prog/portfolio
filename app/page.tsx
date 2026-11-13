@@ -12,6 +12,7 @@ import {
   Clock,
 } from "@phosphor-icons/react/ssr";
 import { Cta, FaqItem, Shot } from "@/components/client";
+import Link from "next/link";
 import { jsonLd } from "@/lib/schema";
 import { CITIES, COMPLIANCE, FAQS, HOURS, PHONE_DISPLAY, PHONE_TEL, SERVICES, STEPS, WHATSAPP_URL } from "@/lib/site";
 import { Footer, Header, JsonLd, Reveal, TradeBar, TradeButtons, btnGhost, btnPrimary, eyebrow, h2 } from "@/components/chrome";
@@ -167,7 +168,9 @@ function Network() {
                     <MapPin size={20} weight="fill" className="text-emerald" />
                   </span>
                   <div>
-                    <p className="font-display text-lg font-semibold tracking-tight">{c.name}</p>
+                    <Link href={`/usdt/${c.slug}`} className="font-display text-lg font-semibold tracking-tight transition hover:text-emerald">
+                      USDT in {c.name}
+                    </Link>
                     <p className="text-sm text-muted">{c.role}</p>
                   </div>
                 </div>

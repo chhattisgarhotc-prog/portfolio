@@ -1,3 +1,5 @@
+import { GUIDES, type Guide } from "@/lib/guides";
+import { cityAnswer, cityDescription, cityFaqs, cityTitle, type City } from "@/lib/cities";
 import { DOCS, type DocSlug } from "@/lib/pages";
 import { CITIES, FAQS, PHONE_TEL, SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from "@/lib/site";
 
@@ -98,5 +100,91 @@ export function docJsonLd(slug: DocSlug) {
         ],
       },
     ],
+  };
+}
+
+export function cityJsonLd(c: City) {
+  const url = `${SITE_URL}/usdt/${c.slug}`;
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": `${url}#webpage`,
+        url,
+        name: cityTitle(c),
+        description: cityDescription(c),
+        inLanguage: "en-IN",
+        isPartOf: { "@id": `${SITE_URL}/#website` },
+        about: { "@id": `${url}#service` },
+        breadcrumb: { "@id": `${url}#breadcrumb` },
+      },
+      {
+        "@type": "Service",
+        "@id": `${url}#service`,
+        name: `USDT OTC desk in ${c.name}`,
+        serviceType: "USDT OTC desk",
+        description: cityAnswer(c),
+        provider: { "@id": org },
+        areaServed: { "@type": "City", name: c.name, containedInPlace: { "@type": "State", name: "Chhattisgarh" } },
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${url}#faq`,
+        isPartOf: { "@id": `${url}#webpage` },
+        mainEntity: cityFaqs(c).map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${url}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: SITE_NAME, item: `${SITE_URL}/` },
+          { "@type": "ListItem", position: 2, name: cityTitle(c), item: url },
+        ],
+      },
+    ],
+  };
+}
+
+export function guideJsonLd(g: Guide) {
+  const url = `${SITE_URL}/guides/${g.slug}`;
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": `${url}#article`,
+        headline: g.title,
+        description: g.description,
+        url,
+        mainEntityOfPage: url,
+        dateModified: g.updated,
+        datePublished: g.updated,
+        inLanguage: "en-IN",
+        author: { "@id": org },
+        publisher: { "@id": org },
+        citation: g.sources.map((s) => s.url),
+        isPartOf: { "@id": `${SITE_URL}/#website` },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: SITE_NAME, item: `${SITE_URL}/` },
+          { "@type": "ListItem", position: 2, name: "Guides", item: `${SITE_URL}/guides` },
+          { "@type": "ListItem", position: 3, name: g.title, item: url },
+        ],
+      },
+    ],
+  };
+}
+
+export function guidesHubJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    url: `${SITE_URL}/guides`,
+    name: "USDT guides",
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    hasPart: GUIDES.map((g) => ({ "@type": "Article", headline: g.title, url: `${SITE_URL}/guides/${g.slug}` })),
   };
 }
