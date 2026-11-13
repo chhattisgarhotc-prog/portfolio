@@ -46,3 +46,14 @@ export const FAQS = [
     a: "Yes. In accordance with anti-fraud safeguards and PMLA compliance protocols, all counterparties must provide identity matching before trade execution.",
   },
 ];
+
+export const SITE_NAME = "USDT Chhattisgarh";
+export const SITE_TITLE = "USDT Chhattisgarh | Buy & Sell USDT OTC Desk in Raipur";
+export const SITE_DESCRIPTION =
+  "Buy and sell USDT through CDM or counter cash settlement in Raipur, Bilaspur, Durg-Bhilai, Korba, Ambikapur, Jagdalpur and Raigarh. Min 100 USDT.";
+export const SITE_URL = (
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : "http://localhost:3000")
+).replace(/\/$/, "");

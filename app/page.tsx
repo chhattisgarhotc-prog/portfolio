@@ -13,6 +13,7 @@ import {
   Clock,
 } from "@phosphor-icons/react/ssr";
 import { Cta, FaqItem, Reveal, Shot } from "@/components/client";
+import { jsonLd } from "@/lib/schema";
 import { CITIES, FAQS, NAV, PHONE_DISPLAY, PHONE_TEL, WHATSAPP_URL, tradeLink } from "@/lib/site";
 
 const btnPrimary =
@@ -29,8 +30,12 @@ const h2 = "font-display text-4xl font-semibold leading-[1.05] tracking-[-0.03em
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+      />
       <Header />
-      <main>
+      <main id="main" tabIndex={-1}>
         <Hero />
         <Metrics />
         <Services />
@@ -50,7 +55,7 @@ function Logo() {
   return (
     <a href="#top" className="flex min-w-0 items-center gap-2 sm:gap-3">
       <span className="relative size-9 shrink-0 overflow-hidden rounded-full border border-gold/40 bg-panel sm:size-10">
-        <Shot src="/images/logo-mark.jpg" alt="" sizes="40px" className="object-cover" />
+        <Shot src="/images/usdt-chhattisgarh-logo.jpg" alt="" sizes="40px" className="object-cover" />
       </span>
       <span className="truncate font-display text-base font-semibold leading-tight tracking-[-0.02em] sm:text-lg">
         USDT <span className="gold-text">Chhattisgarh</span>
@@ -91,7 +96,7 @@ function Hero() {
     <section id="top" className="relative overflow-hidden">
       <div className="grid-lines pointer-events-none absolute inset-0" />
       <div className="relative mx-auto grid min-h-[calc(100dvh-4rem)] max-w-7xl items-center gap-12 px-4 py-16 md:px-8 lg:grid-cols-[1.15fr_0.85fr] lg:py-20">
-        <Reveal>
+        <div>
           <p className={eyebrow}>Institutional & Regional OTC Desk</p>
           <h1 className="mt-5 font-display text-4xl font-semibold leading-[1.05] tracking-[-0.035em] md:text-5xl lg:text-6xl">
             Structured <span className="gold-text">USDT liquidity</span> across Chhattisgarh
@@ -105,19 +110,19 @@ function Hero() {
               View Process <ArrowDown size={16} weight="bold" />
             </a>
           </div>
-        </Reveal>
-        <Reveal delay={0.15} className="relative mx-auto w-full max-w-md">
+        </div>
+        <div className="relative mx-auto w-full max-w-md">
           <div className="absolute inset-8 rounded-full bg-emerald/25 blur-3xl" />
           <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-line bg-panel/60 shadow-[0_40px_80px_-30px_rgb(0_0_0/0.6)]">
             <Shot
-              src="/images/logo.jpg"
+              src="/images/usdt-chhattisgarh-desk.jpg"
               alt="USDT Chhattisgarh liquidity desk badge"
               priority
               sizes="(min-width: 1024px) 28rem, 90vw"
               className="object-cover"
             />
           </div>
-        </Reveal>
+        </div>
       </div>
     </section>
   );
@@ -168,7 +173,7 @@ function Services() {
       <div className="mt-12 grid gap-5 lg:grid-cols-5 lg:grid-rows-2">
         <Reveal className="relative min-h-80 overflow-hidden rounded-2xl border border-line bg-panel lg:col-span-3 lg:row-span-2">
           <Shot
-            src="/images/services.jpg"
+            src="/images/cdm-counter-cash-settlement.jpg"
             alt="Instant CDM settlements and secure counter cash"
             sizes="(min-width: 1024px) 60vw, 100vw"
             className="object-cover"
@@ -213,7 +218,7 @@ function Network() {
           </Reveal>
           <Reveal delay={0.1} className="relative mx-auto aspect-square w-full max-w-md overflow-hidden rounded-2xl border border-line bg-panel">
             <Shot
-              src="/images/coverage.jpg"
+              src="/images/chhattisgarh-usdt-coverage-map.jpg"
               alt="Map of the USDT Chhattisgarh regional network"
               sizes="(min-width: 1024px) 26rem, 100vw"
               className="object-cover"
@@ -272,7 +277,7 @@ function Process() {
       </Reveal>
       <Reveal className="relative mt-12 aspect-[16/7] overflow-hidden rounded-2xl border border-line bg-panel">
         <Shot
-          src="/images/workflow.jpg"
+          src="/images/usdt-otc-trade-process.jpg"
           alt="Deposit, verification and release workflow"
           sizes="(min-width: 1280px) 80rem, 100vw"
           className="object-cover"
