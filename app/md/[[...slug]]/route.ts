@@ -11,6 +11,7 @@ export async function GET(_req: Request, ctx: RouteContext<"/md/[[...slug]]">) {
     headers: {
       "Content-Type": "text/markdown; charset=utf-8",
       Vary: "Accept",
+      "X-Robots-Tag": "noindex",
       ...(page && { Link: `<${SITE_URL}${path === "/" ? "/" : path}>; rel="canonical"` }),
     },
   });

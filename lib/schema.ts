@@ -1,3 +1,4 @@
+import { DOCS, type DocSlug } from "@/lib/pages";
 import { CITIES, FAQS, PHONE_TEL, SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from "@/lib/site";
 
 const org = `${SITE_URL}/#organization`;
@@ -68,3 +69,34 @@ export const jsonLd = {
     },
   ],
 };
+
+const docTypes = { about: "AboutPage", contact: "ContactPage", privacy: "WebPage" } as const;
+
+export function docJsonLd(slug: DocSlug) {
+  const url = `${SITE_URL}/${slug}`;
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": docTypes[slug],
+        "@id": `${url}#webpage`,
+        url,
+        name: DOCS[slug].title,
+        description: DOCS[slug].description,
+        dateModified: DOCS[slug].updated,
+        inLanguage: "en-IN",
+        isPartOf: { "@id": `${SITE_URL}/#website` },
+        about: { "@id": org },
+        breadcrumb: { "@id": `${url}#breadcrumb` },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${url}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: SITE_NAME, item: `${SITE_URL}/` },
+          { "@type": "ListItem", position: 2, name: DOCS[slug].title, item: url },
+        ],
+      },
+    ],
+  };
+}

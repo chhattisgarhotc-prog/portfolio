@@ -22,8 +22,33 @@ check("homepage Markdown negotiation", async () => {
   const res = await get("/", "text/markdown");
   assert.equal(res.status, 200);
   assert.match(res.headers.get("content-type"), /^text\/markdown/);
-  assert.match(res.headers.get("vary") ?? "", /\bAccept\b/i);
+  assert.match(res.headers.get("vary") ?? "", /(^|,)\s*Accept\s*(,|$)/i);
+  assert.match(res.headers.get("x-robots-tag") ?? "", /noindex/);
   assert.match(await res.text(), /^# USDT Chhattisgarh/);
+});
+
+for (const [accept, p] of [["text/html,application/xhtml+xml,*/*;q=0.8", "/"], ["text/html, text/markdown;q=0.5", "/about"]]) {
+  check(`HTML wins for "${accept}" on ${p}`, async () => {
+    const res = await get(p, accept);
+    assert.match(res.headers.get("content-type"), /text\/html/);
+  });
+}
+
+check("title and description lengths", async () => {
+  for (const p of ["/", "/about", "/contact", "/privacy"]) {
+    const html = await (await get(p)).text();
+    const title = html.match(/<title>([^<]*)<\/title>/)[1].replace(/&amp;/g, "&");
+    const desc = html.match(/<meta name="description" content="([^"]*)"/)[1].replace(/&amp;/g, "&");
+    assert.ok(title.length <= 70, `${p} title is ${title.length} chars`);
+    assert.ok(desc.length >= 70 && desc.length <= 160, `${p} description is ${desc.length} chars`);
+  }
+});
+
+check("IndexNow key file", async () => {
+  const { readdirSync, readFileSync } = await import("node:fs");
+  const file = readdirSync(new URL("../public/", import.meta.url)).find((f) => /^[a-f0-9]{32,128}\.txt$/.test(f));
+  assert.ok(file, "no key file in public/");
+  assert.equal((await (await get(`/${file}`, "text/plain")).text()).trim(), readFileSync(new URL(`../public/${file}`, import.meta.url), "utf8").trim());
 });
 
 check("Markdown 404", async () => {
@@ -40,6 +65,7 @@ check("HTML 404", async () => assert.equal((await get("/__verify-404-probe")).st
 check("robots.txt", async () => {
   const body = await (await get("/robots.txt", "text/plain")).text();
   assert.match(body, /Sitemap: https?:\/\/\S+\/sitemap\.xml/);
+  assert.match(body, /Content-Signal: search=yes, ai-input=yes, ai-train=yes/);
   assert.doesNotMatch(body, /Disallow: \/\s*$/m);
 });
 
@@ -59,8 +85,10 @@ for (const p of ["/about", "/contact", "/privacy"]) {
   check(`${p} HTML and Markdown`, async () => {
     const res = await get(p);
     assert.equal(res.status, 200);
-    const text = (await res.text()).match(/<main[^>]*>(.*?)<\/main>/s)[1].replace(/<[^>]+>/g, " ");
+    const html = await res.text();
+    const text = html.match(/<main[^>]*>(.*?)<\/main>/s)[1].replace(/<[^>]+>/g, " ");
     assert.ok(text.replace(/\s+/g, " ").length >= 500, `${p} main text too short`);
+    assert.match(html, /"BreadcrumbList"/);
     const md = await get(p, "text/markdown");
     assert.equal(md.status, 200);
     assert.match(md.headers.get("content-type"), /^text\/markdown/);

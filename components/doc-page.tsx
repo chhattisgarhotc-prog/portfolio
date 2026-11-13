@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { WhatsappLogo, Phone } from "@phosphor-icons/react/ssr";
-import { Footer, Header, btnGhost, btnPrimary, eyebrow } from "@/components/chrome";
+import { Footer, Header, JsonLd, btnGhost, btnPrimary, eyebrow } from "@/components/chrome";
 import { Cta } from "@/components/client";
 import { DOCS, type DocSlug } from "@/lib/pages";
+import { docJsonLd } from "@/lib/schema";
 import { PHONE_DISPLAY, PHONE_TEL, SITE_NAME, WHATSAPP_URL } from "@/lib/site";
 
 export function docMetadata(slug: DocSlug): Metadata {
@@ -20,6 +21,7 @@ export function DocPage({ slug }: { slug: DocSlug }) {
   const d = DOCS[slug];
   return (
     <>
+      <JsonLd data={docJsonLd(slug)} />
       <Header />
       <main id="main" tabIndex={-1} className="mx-auto max-w-3xl px-4 py-20 md:px-8 md:py-28">
         <p className={eyebrow}>Last updated {d.updated}</p>

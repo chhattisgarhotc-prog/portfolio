@@ -14,15 +14,12 @@ import {
 import { Cta, FaqItem, Shot } from "@/components/client";
 import { jsonLd } from "@/lib/schema";
 import { CITIES, COMPLIANCE, FAQS, HOURS, PHONE_DISPLAY, PHONE_TEL, SERVICES, STEPS, WHATSAPP_URL } from "@/lib/site";
-import { Footer, Header, Reveal, TradeBar, TradeButtons, btnGhost, btnPrimary, eyebrow, h2 } from "@/components/chrome";
+import { Footer, Header, JsonLd, Reveal, TradeBar, TradeButtons, btnGhost, btnPrimary, eyebrow, h2 } from "@/components/chrome";
 
 export default function Home() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
-      />
+      <JsonLd data={jsonLd} />
       <Header />
       <main id="main" tabIndex={-1}>
         <Hero />

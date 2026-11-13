@@ -45,7 +45,7 @@ export const DOCS: Record<DocSlug, Doc> = {
   },
   contact: {
     title: `Contact ${SITE_NAME}`,
-    description: "Reach the USDT desk by WhatsApp or phone for live rates.",
+    description: "Call or WhatsApp the USDT Chhattisgarh desk for live buy and sell rates.",
     updated: "2026-11-13",
     sections: [
       {
@@ -71,7 +71,7 @@ export const DOCS: Record<DocSlug, Doc> = {
   },
   privacy: {
     title: "Privacy Policy",
-    description: `How ${SITE_NAME} collects, uses and protects your information.`,
+    description: `How ${SITE_NAME} collects, uses, shares and protects your personal information.`,
     updated: "2026-11-13",
     sections: [
       {

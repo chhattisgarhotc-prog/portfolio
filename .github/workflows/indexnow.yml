@@ -1,0 +1,21 @@
+name: IndexNow
+on:
+  deployment_status:
+  schedule:
+    - cron: "17 4 * * *"
+  workflow_dispatch:
+jobs:
+  submit:
+    if: github.event_name != 'deployment_status' || (github.event.deployment_status.state == 'success' && github.event.deployment.environment == 'Production')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: |
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            node scripts/indexnow.mjs --since=$(date -u -d '2 days ago' +%F)
+          else
+            node scripts/indexnow.mjs
+          fi
